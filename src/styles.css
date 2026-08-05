@@ -1,0 +1,265 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * FC3 MALL — CIAO CITY CENTER
+ * Design system: FC3 Black / Pure White / FC3 Warm Gold.
+ * Gold is an accent only (~10% of any screen), never body copy.
+ */
+
+@theme inline {
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-smoke: var(--smoke);
+  --color-graphite: var(--graphite);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --text-hero: clamp(3rem, 12vw, 11.25rem);
+  --text-display: clamp(2.5rem, 8.5vw, 8rem);
+  --text-headline: clamp(2rem, 5.5vw, 4.5rem);
+  --text-title: clamp(1.5rem, 3vw, 2.25rem);
+  --text-label: 0.6875rem;
+
+  --ease-fc3: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --radius: 0px;
+  --ink: oklch(0.145 0 0);
+  --paper: oklch(1 0 0);
+  --gold: oklch(0.742 0.108 76.5);
+  --gold-deep: oklch(0.63 0.1 72);
+  --smoke: oklch(0.965 0 0);
+  --graphite: oklch(0.28 0 0);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--smoke);
+  --secondary-foreground: var(--ink);
+  --muted: var(--smoke);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: var(--gold);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: var(--paper);
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+  --ring: var(--gold);
+}
+
+.dark {
+  --background: var(--ink);
+  --foreground: var(--paper);
+  --card: oklch(0.19 0 0);
+  --card-foreground: var(--paper);
+  --popover: oklch(0.19 0 0);
+  --popover-foreground: var(--paper);
+  --primary: var(--paper);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.24 0 0);
+  --secondary-foreground: var(--paper);
+  --muted: oklch(0.24 0 0);
+  --muted-foreground: oklch(0.72 0 0);
+  --accent: var(--gold);
+  --accent-foreground: var(--ink);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 18%);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+}
+
+/* --- FC3 utilities ------------------------------------------------ */
+
+@utility fc3-label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@utility fc3-shell {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 96rem;
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
+  @media (min-width: 1280px) {
+    padding-inline: 4rem;
+  }
+}
+
+/* Square gold accent marker derived from the logo */
+@utility fc3-square {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  background: var(--gold);
+}
+
+/* Animated editorial underline */
+@utility fc3-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.6s var(--ease-fc3);
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Modular grid derived from the logo's square language */
+@utility fc3-grid-lines {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, currentColor 10%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, currentColor 10%, transparent) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+}
+
+/* Scroll-reveal primitives driven by JS (data-reveal) */
+@layer base {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition:
+      opacity 0.9s var(--ease-fc3),
+      transform 1.1s var(--ease-fc3);
+  }
+
+  [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal-mask] {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.2s var(--ease-fc3);
+  }
+
+  [data-reveal-mask].is-in {
+    clip-path: inset(0 0 0 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    [data-reveal],
+    [data-reveal-mask] {
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+    }
+  }
+}
+
+@keyframes fc3-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility fc3-marquee-track {
+  animation: fc3-marquee 28s linear infinite;
+}
