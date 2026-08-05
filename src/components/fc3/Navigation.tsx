@@ -4,7 +4,7 @@ import { LogoMark, Wordmark } from "./Logo";
 import { navigation, quickAccess } from "@/content/site";
 
 export function Navigation() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);

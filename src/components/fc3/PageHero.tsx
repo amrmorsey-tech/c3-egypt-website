@@ -41,7 +41,7 @@ export function PageHero({
         {breadcrumb?.length ? (
           <nav aria-label="Breadcrumb" className="fc3-label mb-8 flex flex-wrap items-center gap-3 text-paper/50">
             <Link to="/" className="fc3-underline">
-              FC3
+              C3
             </Link>
             {breadcrumb.map((crumb) => (
               <span key={crumb.to} className="flex items-center gap-3">

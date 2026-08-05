@@ -11,9 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as BrandsRouteImport } from './routes/brands'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as EntertainmentRouteImport } from './routes/entertainment'
+import { Route as InvestorsRouteImport } from './routes/investors'
+import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as OffersRouteImport } from './routes/offers'
 import { Route as VisitRouteImport } from './routes/visit'
@@ -34,6 +38,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandsRoute = BrandsRouteImport.update({
+  id: '/brands',
+  path: '/brands',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -44,9 +53,24 @@ const DiscoverRoute = DiscoverRouteImport.update({
   path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EcosystemRoute = EcosystemRouteImport.update({
+  id: '/ecosystem',
+  path: '/ecosystem',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EntertainmentRoute = EntertainmentRouteImport.update({
   id: '/entertainment',
   path: '/entertainment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestorsRoute = InvestorsRouteImport.update({
+  id: '/investors',
+  path: '/investors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapRoute = MapRouteImport.update({
@@ -98,9 +122,13 @@ const StoresSlugRoute = StoresSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
   '/discover': typeof DiscoverRoute
+  '/ecosystem': typeof EcosystemRoute
   '/entertainment': typeof EntertainmentRoute
+  '/investors': typeof InvestorsRoute
+  '/locations': typeof LocationsRoute
   '/map': typeof MapRoute
   '/offers': typeof OffersRoute
   '/visit': typeof VisitRoute
@@ -114,9 +142,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
   '/discover': typeof DiscoverRoute
+  '/ecosystem': typeof EcosystemRoute
   '/entertainment': typeof EntertainmentRoute
+  '/investors': typeof InvestorsRoute
+  '/locations': typeof LocationsRoute
   '/map': typeof MapRoute
   '/offers': typeof OffersRoute
   '/visit': typeof VisitRoute
@@ -131,9 +163,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
   '/discover': typeof DiscoverRoute
+  '/ecosystem': typeof EcosystemRoute
   '/entertainment': typeof EntertainmentRoute
+  '/investors': typeof InvestorsRoute
+  '/locations': typeof LocationsRoute
   '/map': typeof MapRoute
   '/offers': typeof OffersRoute
   '/visit': typeof VisitRoute
@@ -149,9 +185,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/brands'
     | '/contact'
     | '/discover'
+    | '/ecosystem'
     | '/entertainment'
+    | '/investors'
+    | '/locations'
     | '/map'
     | '/offers'
     | '/visit'
@@ -165,9 +205,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/brands'
     | '/contact'
     | '/discover'
+    | '/ecosystem'
     | '/entertainment'
+    | '/investors'
+    | '/locations'
     | '/map'
     | '/offers'
     | '/visit'
@@ -181,9 +225,13 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/brands'
     | '/contact'
     | '/discover'
+    | '/ecosystem'
     | '/entertainment'
+    | '/investors'
+    | '/locations'
     | '/map'
     | '/offers'
     | '/visit'
@@ -198,9 +246,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BrandsRoute: typeof BrandsRoute
   ContactRoute: typeof ContactRoute
   DiscoverRoute: typeof DiscoverRoute
+  EcosystemRoute: typeof EcosystemRoute
   EntertainmentRoute: typeof EntertainmentRoute
+  InvestorsRoute: typeof InvestorsRoute
+  LocationsRoute: typeof LocationsRoute
   MapRoute: typeof MapRoute
   OffersRoute: typeof OffersRoute
   VisitRoute: typeof VisitRoute
@@ -228,6 +280,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brands': {
+      id: '/brands'
+      path: '/brands'
+      fullPath: '/brands'
+      preLoaderRoute: typeof BrandsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -242,11 +301,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ecosystem': {
+      id: '/ecosystem'
+      path: '/ecosystem'
+      fullPath: '/ecosystem'
+      preLoaderRoute: typeof EcosystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/entertainment': {
       id: '/entertainment'
       path: '/entertainment'
       fullPath: '/entertainment'
       preLoaderRoute: typeof EntertainmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investors': {
+      id: '/investors'
+      path: '/investors'
+      fullPath: '/investors'
+      preLoaderRoute: typeof InvestorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/map': {
@@ -318,9 +398,13 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BrandsRoute: BrandsRoute,
   ContactRoute: ContactRoute,
   DiscoverRoute: DiscoverRoute,
+  EcosystemRoute: EcosystemRoute,
   EntertainmentRoute: EntertainmentRoute,
+  InvestorsRoute: InvestorsRoute,
+  LocationsRoute: LocationsRoute,
   MapRoute: MapRoute,
   OffersRoute: OffersRoute,
   VisitRoute: VisitRoute,

@@ -90,9 +90,9 @@ export function Footer() {
         </div>
 
         <p className="mt-10 font-display text-[clamp(3rem,15vw,13rem)] font-bold uppercase leading-[0.78] tracking-[-0.05em]">
-          <span className="block">Ciao</span>
+          <span className="block">C3</span>
           <span className="block text-paper/25">
-            City Center<span className="text-gold">.</span>
+            Retail Network<span className="text-gold">.</span>
           </span>
         </p>
       </div>
