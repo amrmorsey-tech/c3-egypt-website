@@ -73,7 +73,7 @@ const pathname = useRouterState({ select: (s) => s.location.pathname });
       >
         <div className="fc3-shell flex h-[4.5rem] items-center justify-between gap-6 md:h-[5.5rem]">
           <Link to="/" aria-label="C3 Retail Network home" className="shrink-0">
-            {overlay ? <LogoMark className="h-8 md:h-9" /> : <Wordmark />}
+            <LogoMark className={`h-8 md:h-9 transition-all duration-500 ${!overlay ? "brightness-0" : ""}`} />
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">

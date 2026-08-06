@@ -3,17 +3,14 @@ import { Link } from "@tanstack/react-router";
 import { ecosystem } from "@/content/site";
 import { SectionLabel } from "@/components/fc3/primitives";
 import { usePrefersReducedMotion } from "@/lib/motion";
+import panelShop from "@/assets/panel-shop.jpg";
+import panelDine from "@/assets/panel-dine.jpg";
+import panelEntertainment from "@/assets/panel-entertainment.jpg";
+import panelExperiences from "@/assets/panel-experiences.jpg";
+import panelHyper from "@/assets/dining-1.jpg";
+import panelFamily from "@/assets/ent-kids.jpg";
 
-const panelGradients = [
-  "from-[#1a1208] to-[#3d2b0a]",   // Retail — warm dark
-  "from-[#0a1a12] to-[#0f2d1a]",   // F&B — deep green
-  "from-[#0d0a1a] to-[#1a1030]",   // Entertainment — dark purple
-  "from-[#1a0a0a] to-[#2d1010]",   // Hypermarkets — dark red
-  "from-[#0a121a] to-[#102030]",   // Services — dark blue
-  "from-[#1a1a0a] to-[#2a2a10]",   // Family — dark olive
-];
-
-const panelIcons = ["◈", "⬡", "◉", "⬢", "◎", "⬟"];
+const panelImages = [panelShop, panelDine, panelEntertainment, panelExperiences, panelHyper, panelFamily];
 
 export function DiscoverPanels() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -126,13 +123,12 @@ export function DiscoverPanels() {
                   horizontal ? "h-[58vh] w-[36vw] shrink-0" : "aspect-[4/5]"
                 }`}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${panelGradients[i % panelGradients.length]}`} />
-                {/* Grid texture */}
-                <div className="absolute inset-0 grid grid-cols-6 grid-rows-8 gap-px opacity-10">
-                  {Array.from({ length: 48 }).map((_, j) => (
-                    <div key={j} className="bg-paper" />
-                  ))}
-                </div>
+                <img
+                  src={panelImages[i % panelImages.length]}
+                  alt={panel.label}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
                 {/* Gold accent */}
                 <div className="absolute right-6 top-6 h-6 w-6 bg-gold opacity-70 transition-all duration-700 group-hover:opacity-100 group-hover:scale-110" />
                 <span className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />

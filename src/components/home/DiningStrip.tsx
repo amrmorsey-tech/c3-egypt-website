@@ -1,14 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { locations } from "@/content/site";
 import { SectionLabel, AnimatedButton } from "@/components/fc3/primitives";
+import dining1 from "@/assets/dining-1.jpg";
+import dining2 from "@/assets/dining-2.jpg";
+import dining3 from "@/assets/dining-3.jpg";
+import dining4 from "@/assets/dining-4.jpg";
+import visitAerial from "@/assets/visit-aerial.jpg";
+import storesHero from "@/assets/stores-hero.jpg";
+import introArch from "@/assets/intro-architecture.jpg";
+import panelShop from "@/assets/panel-shop.jpg";
 
-const locationAccents = [
-  "from-[#2a1f08] to-[#1a1208]",
-  "from-[#081a10] to-[#051208]",
-  "from-[#0a0a1a] to-[#08081a]",
-  "from-[#1a0808] to-[#120505]",
-  "from-[#081218] to-[#050d12]",
-];
+const locationImages = [dining1, dining2, dining3, dining4, visitAerial, storesHero, introArch, panelShop];
 
 export function DiningStrip() {
   return (
@@ -33,22 +35,17 @@ export function DiningStrip() {
               className="w-[76vw] shrink-0 sm:w-[42vw] lg:w-[27vw]"
             >
               <Link to="/locations" className="group block">
-                {/* Visual card — gradient with grid overlay */}
-                <div className={`relative aspect-[4/5] overflow-hidden bg-gradient-to-br ${locationAccents[i % locationAccents.length]}`}>
-                  {/* Grid texture */}
-                  <div className="absolute inset-0 grid grid-cols-5 grid-rows-7 gap-px opacity-15">
-                    {Array.from({ length: 35 }).map((_, j) => (
-                      <div key={j} className="bg-paper" />
-                    ))}
-                  </div>
+                {/* Visual card — real photo */}
+                <div className="relative aspect-[4/5] overflow-hidden bg-ink">
+                  <img
+                    src={locationImages[i % locationImages.length]}
+                    alt={loc.shortName}
+                    className="h-full w-full object-cover opacity-75 transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-ink/30" />
                   {/* Gold accent corner */}
-                  <div className="absolute right-5 top-5 h-5 w-5 bg-gold opacity-80 transition-transform duration-500 group-hover:scale-110" />
-                  {/* Location initial */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display text-[5rem] font-bold text-paper/8 select-none uppercase">
-                      {loc.name.split("—")[1]?.trim().charAt(0) ?? "C"}
-                    </span>
-                  </div>
+                  <div className="absolute right-5 top-5 h-5 w-5 bg-gold transition-transform duration-500 group-hover:scale-110" />
                   {/* Tag badge */}
                   <span className="absolute left-4 top-4 bg-paper px-3 py-2 fc3-label text-[0.5625rem]">
                     {loc.tag}

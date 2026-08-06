@@ -4,6 +4,14 @@ import { PageHero } from "@/components/fc3/PageHero";
 import { Marquee } from "@/components/fc3/Marquee";
 import { AnimatedButton, SectionLabel } from "@/components/fc3/primitives";
 import { ecosystem, site } from "@/content/site";
+import panelShop from "@/assets/panel-shop.jpg";
+import panelDine from "@/assets/panel-dine.jpg";
+import panelEnt from "@/assets/panel-entertainment.jpg";
+import panelExp from "@/assets/panel-experiences.jpg";
+import panelHyper from "@/assets/dining-1.jpg";
+import panelFamily from "@/assets/ent-kids.jpg";
+
+const ecoImages = [panelShop, panelDine, panelEnt, panelExp, panelHyper, panelFamily];
 
 export const Route = createFileRoute("/ecosystem")({
   head: () => ({
@@ -86,13 +94,17 @@ function Ecosystem() {
                 key={cat.label}
                 data-reveal
                 data-reveal-delay={i * 70}
-                className={`relative overflow-hidden p-8 bg-gradient-to-br ${panelGradients[i]}`}
+                className="relative overflow-hidden"
               >
-                <div className="absolute inset-0 grid grid-cols-5 grid-rows-5 gap-px opacity-10">
-                  {Array.from({ length: 25 }).map((_, j) => <div key={j} className="bg-paper" />)}
-                </div>
-                <div className="absolute right-5 top-5 h-5 w-5 bg-gold opacity-70" />
-                <div className="relative">
+                <img
+                  src={ecoImages[i % ecoImages.length]}
+                  alt={cat.label}
+                  className="absolute inset-0 h-full w-full object-cover opacity-60"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-ink/70" />
+                <div className="absolute right-5 top-5 h-5 w-5 bg-gold" />
+                <div className="relative p-8">
                   <span className="fc3-label text-gold">0{i + 1}</span>
                   <h3 className="mt-4 font-display text-2xl font-bold uppercase tracking-[-0.03em] leading-tight">{cat.label}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-paper/60">{cat.desc}</p>

@@ -1,5 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { SectionLabel } from "@/components/fc3/primitives";
+import imgBrands from "@/assets/panel-shop.jpg";
+import imgInvestors from "@/assets/visit-aerial.jpg";
+import imgCommunity from "@/assets/ent-kids.jpg";
 
 const propositions = [
   {
@@ -9,7 +12,7 @@ const propositions = [
     detail: "60+ brands already in the network",
     to: "/brands",
     cta: "Explore brand opportunities",
-    gradient: "from-[#1a1408] to-[#0d0a04]",
+    image: imgBrands,
   },
   {
     kicker: "For Investors",
@@ -18,7 +21,7 @@ const propositions = [
     detail: "200K+ SQM GLA under management",
     to: "/investors",
     cta: "Investor relations",
-    gradient: "from-[#080d18] to-[#04060d]",
+    image: imgInvestors,
   },
   {
     kicker: "For Communities",
@@ -27,7 +30,7 @@ const propositions = [
     detail: "5,000+ daily visitors network-wide",
     to: "/about",
     cta: "Our community story",
-    gradient: "from-[#0a1408] to-[#060d04]",
+    image: imgCommunity,
   },
 ];
 
@@ -51,22 +54,15 @@ export function EntertainmentSection() {
               }`}
             >
               {/* Visual block */}
-              <div data-reveal-mask className={`group relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${item.gradient}`}>
-                {/* Grid texture */}
-                <div className="absolute inset-0 grid grid-cols-6 grid-rows-5 gap-px opacity-15">
-                  {Array.from({ length: 30 }).map((_, j) => (
-                    <div key={j} className="bg-paper" />
-                  ))}
-                </div>
-                {/* Gold accent */}
-                <div className="absolute right-8 top-8 h-8 w-8 bg-gold opacity-80" />
-                <div className="absolute left-8 bottom-8 h-4 w-4 bg-gold opacity-50" />
-                {/* Large number */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-display text-[8rem] font-bold text-paper/6 select-none leading-none">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
+              <div data-reveal-mask className="group relative aspect-[4/3] overflow-hidden bg-ink">
+                <img
+                  src={item.image}
+                  alt={item.kicker}
+                  className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-ink/40" />
+                <div className="absolute right-6 top-6 h-5 w-5 bg-gold" aria-hidden="true" />
               </div>
 
               {/* Text block */}

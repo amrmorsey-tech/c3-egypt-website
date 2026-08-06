@@ -1,3 +1,4 @@
+import introArchitecture from "@/assets/intro-architecture.jpg";
 import { site } from "@/content/site";
 import { useParallax } from "@/lib/motion";
 import { SectionLabel, AnimatedButton } from "@/components/fc3/primitives";
@@ -40,31 +41,21 @@ export function Intro() {
           </div>
         </div>
 
-        {/* Visual block — gold grid motif replacing photography */}
-        <div data-reveal-mask className="relative mt-16 aspect-[16/7] overflow-hidden md:mt-24 bg-ink">
+        {/* Visual block — architecture photo */}
+        <div data-reveal-mask className="relative mt-16 aspect-[16/7] overflow-hidden md:mt-24">
           <div ref={parallax} className="absolute inset-0 h-[118%] w-full">
-            {/* Architectural grid pattern */}
-            <div className="absolute inset-0 grid grid-cols-8 grid-rows-4 gap-px opacity-20">
-              {Array.from({ length: 32 }).map((_, i) => (
-                <div key={i} className="bg-paper/30" />
-              ))}
-            </div>
-            {/* Gold accent squares */}
-            <div className="absolute left-[12%] top-[20%] h-16 w-16 bg-gold opacity-80" />
-            <div className="absolute left-[25%] top-[55%] h-8 w-8 bg-gold opacity-60" />
-            <div className="absolute right-[18%] top-[30%] h-12 w-12 bg-gold opacity-70" />
-            <div className="absolute right-[35%] bottom-[20%] h-6 w-6 bg-gold opacity-50" />
-            {/* Center text */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="font-display text-[clamp(3rem,8vw,7rem)] font-bold uppercase tracking-[-0.05em] text-paper/10 select-none">
-                C3
-              </p>
-            </div>
+            <img
+              src={introArchitecture}
+              alt="C3 Retail Network architecture"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-ink/30" />
           </div>
           <span className="absolute bottom-6 left-6 h-3.5 w-3.5 bg-gold" aria-hidden="true" />
           <div className="absolute bottom-8 right-8 text-right">
-            <p className="fc3-label text-paper/50 text-[0.5rem]">8+ LOCATIONS</p>
-            <p className="fc3-label text-paper/50 text-[0.5rem] mt-1">ACROSS EGYPT</p>
+            <p className="fc3-label text-paper/70 text-[0.5rem]">8+ LOCATIONS</p>
+            <p className="fc3-label text-paper/70 text-[0.5rem] mt-1">ACROSS EGYPT</p>
           </div>
         </div>
 

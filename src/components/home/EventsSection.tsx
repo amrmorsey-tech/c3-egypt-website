@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { SectionLabel, AnimatedButton } from "@/components/fc3/primitives";
 import { site } from "@/content/site";
+import featuredImg from "@/assets/event-1.jpg";
 
 const highlights = [
   {
@@ -67,15 +68,13 @@ export function EventsSection() {
           {/* Featured card */}
           <Link to="/locations" className="group block">
             <div data-reveal-mask className="relative aspect-[16/11] overflow-hidden bg-ink">
-              {/* Grid texture */}
-              <div className="absolute inset-0 grid grid-cols-8 grid-rows-6 gap-px opacity-10">
-                {Array.from({ length: 48 }).map((_, i) => (
-                  <div key={i} className="bg-paper" />
-                ))}
-              </div>
-              {/* Gold accents */}
-              <div className="absolute right-8 top-8 h-10 w-10 bg-gold opacity-80 transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute left-12 bottom-16 h-5 w-5 bg-gold opacity-50" />
+              <img
+                src={featuredImg}
+                alt="C3 Retail Network — New Capital Flagship"
+                className="h-full w-full object-cover opacity-75 transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-ink/30" />
               {/* Tag badge */}
               <span className="absolute left-5 top-5 bg-gold px-3 py-2 fc3-label text-[0.5625rem] text-ink">
                 {lead.tag}

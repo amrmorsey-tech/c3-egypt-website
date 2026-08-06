@@ -4,6 +4,16 @@ import { PageHero } from "@/components/fc3/PageHero";
 import { Marquee } from "@/components/fc3/Marquee";
 import { AnimatedButton, SectionLabel } from "@/components/fc3/primitives";
 import { locations, site } from "@/content/site";
+import dining1 from "@/assets/dining-1.jpg";
+import dining2 from "@/assets/dining-2.jpg";
+import dining3 from "@/assets/dining-3.jpg";
+import dining4 from "@/assets/dining-4.jpg";
+import visitAerial from "@/assets/visit-aerial.jpg";
+import storesHero from "@/assets/stores-hero.jpg";
+import panelShop from "@/assets/panel-shop.jpg";
+import panelDine from "@/assets/panel-dine.jpg";
+
+const locImages = [dining1, dining2, dining3, dining4, visitAerial, storesHero, panelShop, panelDine];
 
 export const Route = createFileRoute("/locations")({
   head: () => ({
@@ -68,16 +78,15 @@ function Locations() {
             {active.map((loc, i) => (
               <li key={loc.id} data-reveal data-reveal-delay={i * 70}>
                 <a href={loc.mapUrl} target="_blank" rel="noreferrer" className="group block">
-                  <div className={`relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${cardGradients[i % cardGradients.length]}`}>
-                    <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-px opacity-15">
-                      {Array.from({ length: 20 }).map((_, j) => <div key={j} className="bg-paper" />)}
-                    </div>
-                    <div className="absolute right-5 top-5 h-6 w-6 bg-gold opacity-80 transition-transform duration-500 group-hover:scale-110" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-display text-[5rem] font-bold text-paper/6 select-none uppercase leading-none">
-                        {loc.shortName.charAt(0)}
-                      </span>
-                    </div>
+                  <div className="relative aspect-[4/3] overflow-hidden bg-ink">
+                    <img
+                      src={locImages[i % locImages.length]}
+                      alt={loc.shortName}
+                      className="h-full w-full object-cover opacity-75 transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-ink/30" />
+                    <div className="absolute right-5 top-5 h-6 w-6 bg-gold transition-transform duration-500 group-hover:scale-110" />
                     <span className="absolute left-4 top-4 bg-paper px-3 py-1.5 fc3-label text-[0.5625rem]">{loc.tag}</span>
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-ink/90 to-transparent p-5">
                       <p className="fc3-label text-paper/70 text-[0.5rem]">GLA {loc.gla}</p>
