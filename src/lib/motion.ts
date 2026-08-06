@@ -25,20 +25,42 @@ export function useScrollReveal() {
       return;
     }
 
+    // Chrome factors clip-path and overflow-hidden into IO intersection calculations,
+    // so elements that start fully clipped (translateY inside overflow-hidden, or
+    // clip-path:inset(0 0 100%)) report 0% intersection and the threshold never fires.
+    // Fix: observe the unclipped parent instead, and animate the actual target when
+    // the parent enters view.
+    const observeMap = new Map<Element, HTMLElement[]>();
+    targets.forEach((el) => {
+      const parent = el.parentElement;
+      const style = parent ? window.getComputedStyle(parent) : null;
+      const parentClips =
+        style && (style.overflow === "hidden" || style.overflowY === "hidden");
+      const isMask = el.hasAttribute("data-reveal-mask");
+      // Use parent as proxy for: (1) [data-reveal] clipped by overflow-hidden parent,
+      // (2) [data-reveal-mask] whose own clip-path fools Chrome's IO.
+      const useParent = (parentClips || isMask) && parent != null;
+      const proxy = useParent ? parent! : el;
+      if (!observeMap.has(proxy)) observeMap.set(proxy, []);
+      observeMap.get(proxy)!.push(el);
+    });
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          const el = entry.target as HTMLElement;
-          const delay = Number(el.dataset["revealDelay"] ?? 0);
-          window.setTimeout(() => el.classList.add("is-in"), delay);
-          io.unobserve(el);
+          const revealTargets = observeMap.get(entry.target) ?? [];
+          revealTargets.forEach((t) => {
+            const delay = Number(t.dataset["revealDelay"] ?? 0);
+            window.setTimeout(() => t.classList.add("is-in"), delay);
+          });
+          io.unobserve(entry.target);
         });
       },
       { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
     );
 
-    targets.forEach((el) => io.observe(el));
+    observeMap.forEach((_, proxy) => io.observe(proxy));
     return () => io.disconnect();
   }, []);
 }
