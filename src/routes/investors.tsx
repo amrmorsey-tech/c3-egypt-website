@@ -71,7 +71,7 @@ function Investors() {
           {investorStats.map((s) => (
             <div key={s.label} className="px-6 py-6 bg-gold">
               <div className="font-display text-[2rem] font-bold text-ink leading-none">{s.value}</div>
-              <div className="fc3-label mt-2 text-ink/60 uppercase tracking-widest text-[0.5rem]">{s.label}</div>
+              <div className="fc3-label mt-2 text-ink/70 uppercase tracking-widest text-[0.5625rem]">{s.label}</div>
             </div>
           ))}
         </div>
@@ -80,12 +80,12 @@ function Investors() {
       {/* Investment case */}
       <section className="bg-paper py-24 text-ink md:py-32">
         <div className="fc3-shell">
-          <SectionLabel index="01">The Investment Case</SectionLabel>
+          <SectionLabel>The Investment Case</SectionLabel>
           <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-24 lg:items-start">
             <div>
               <h2 className="font-display text-[clamp(2rem,4.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-[-0.035em]">
                 <span className="block overflow-hidden"><span data-reveal className="block">Community retail</span></span>
-                <span className="block overflow-hidden"><span data-reveal data-reveal-delay="90" className="block">at national scale<span className="text-gold">.</span></span></span>
+                <span className="block overflow-hidden"><span data-reveal data-reveal-delay="90" className="block">at national scale<span className="text-gold-deep">.</span></span></span>
               </h2>
               <div data-reveal data-reveal-delay="180" className="mt-8 space-y-5 text-base leading-relaxed text-ink/70">
                 <p>Egypt's retail market is growing — but growth is concentrated in Cairo's premium city-centre destinations that are already expensive and well-served.</p>
@@ -110,9 +110,9 @@ function Investors() {
       {/* Growth timeline */}
       <section className="bg-paper py-24 text-ink md:py-32">
         <div className="fc3-shell">
-          <SectionLabel index="02">Growth Roadmap</SectionLabel>
+          <SectionLabel>Growth Roadmap</SectionLabel>
           <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-            From 8 to 20<span className="text-gold">.</span>
+            From 8 to 20<span className="text-gold-deep">.</span>
           </h2>
           <div className="mt-16 space-y-0">
             {timeline.map((phase, i) => (
@@ -123,7 +123,7 @@ function Investors() {
                 className="grid gap-6 border-t border-ink/12 py-8 md:grid-cols-[200px_1fr_1fr] md:items-start md:gap-12"
               >
                 <div>
-                  <p className="font-display text-2xl font-bold text-gold leading-none">{phase.year}</p>
+                  <p className="font-display text-2xl font-bold text-gold-deep leading-none">{phase.year}</p>
                   <p className="fc3-label mt-2 text-ink/50">{phase.title}</p>
                 </div>
                 <ul className="space-y-3 md:col-span-2">
@@ -143,7 +143,7 @@ function Investors() {
       {/* Key partners */}
       <section className="bg-ink py-24 text-paper md:py-32">
         <div className="fc3-shell">
-          <SectionLabel index="03">Strategic Partners</SectionLabel>
+          <SectionLabel tone="ink">Strategic Partners</SectionLabel>
           <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
             Backed by the best<span className="text-gold">.</span>
           </h2>
@@ -183,7 +183,7 @@ function Investors() {
         <div className="fc3-shell grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <h2 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-              Request the investor deck<span className="text-gold">.</span>
+              Request the investor deck<span className="text-gold-deep">.</span>
             </h2>
             <p className="mt-5 max-w-md text-base text-ink/65 leading-relaxed">
               Full financial details, location maps, tenant mix analysis and growth projections available under NDA for qualified investors.

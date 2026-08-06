@@ -8,7 +8,7 @@ export function SocialWall() {
       <div className="fc3-shell">
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
-            <SectionLabel index="06">Community</SectionLabel>
+            <SectionLabel tone="ink">Community</SectionLabel>
             <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
               #C3Egypt
             </h2>

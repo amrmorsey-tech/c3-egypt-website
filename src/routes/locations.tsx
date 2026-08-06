@@ -61,7 +61,7 @@ function Locations() {
           {site.stats.map((s) => (
             <div key={s.label} className="px-6 py-5 bg-gold">
               <div className="font-display text-[1.75rem] font-bold text-ink leading-none">{s.value}</div>
-              <div className="fc3-label mt-1.5 text-ink/60 uppercase tracking-widest text-[0.5rem]">{s.label}</div>
+              <div className="fc3-label mt-1.5 text-ink/70 uppercase tracking-widest text-[0.5625rem]">{s.label}</div>
             </div>
           ))}
         </div>
@@ -70,9 +70,9 @@ function Locations() {
       {/* Active locations grid */}
       <section className="bg-paper py-24 text-ink md:py-32">
         <div className="fc3-shell">
-          <SectionLabel index="01">Active Locations</SectionLabel>
+          <SectionLabel>Active Locations</SectionLabel>
           <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-            Open now<span className="text-gold">.</span>
+            Open now<span className="text-gold-deep">.</span>
           </h2>
           <ul className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {active.map((loc, i) => (
@@ -89,7 +89,7 @@ function Locations() {
                     <div className="absolute right-5 top-5 h-6 w-6 bg-gold transition-transform duration-500 group-hover:scale-110" />
                     <span className="absolute left-4 top-4 bg-paper px-3 py-1.5 fc3-label text-[0.5625rem]">{loc.tag}</span>
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-ink/90 to-transparent p-5">
-                      <p className="fc3-label text-paper/70 text-[0.5rem]">GLA {loc.gla}</p>
+                      <p className="fc3-label text-paper/70 text-[0.5625rem]">GLA {loc.gla}</p>
                       <p className="font-display text-xl font-bold text-paper uppercase tracking-[-0.02em] leading-tight mt-1">{loc.brands} brands</p>
                     </div>
                   </div>
@@ -97,10 +97,10 @@ function Locations() {
                     <h3 className="font-display text-xl font-bold uppercase tracking-[-0.02em] transition-transform duration-500 group-hover:translate-x-1">
                       {loc.shortName}
                     </h3>
-                    <p className="mt-1 fc3-label text-ink/50">{loc.city}, {loc.governorate}</p>
+                    <p className="mt-1 fc3-label text-ink/70">{loc.city}, {loc.governorate}</p>
                     <p className="mt-3 text-sm leading-relaxed text-ink/65">{loc.description}</p>
                     <div className="mt-4 flex items-center justify-between">
-                      <span className="fc3-label text-gold">{loc.footfall}/day</span>
+                      <span className="fc3-label text-gold-deep">{loc.footfall}/day</span>
                       <span className="fc3-label text-ink/40 flex items-center gap-1">
                         Open in maps <span aria-hidden="true">↗</span>
                       </span>
@@ -118,14 +118,14 @@ function Locations() {
       {/* Coming soon */}
       <section className="bg-ink py-24 text-paper md:py-32">
         <div className="fc3-shell">
-          <SectionLabel index="02">Coming Soon</SectionLabel>
+          <SectionLabel tone="ink">Coming Soon</SectionLabel>
           <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
             Opening 2025 — 2026<span className="text-gold">.</span>
           </h2>
           <ul className="mt-16 grid gap-8 md:grid-cols-2">
             {comingSoon.map((loc, i) => (
               <li key={loc.id} data-reveal data-reveal-delay={i * 100} className="border-t border-paper/15 pt-8">
-                <span className="inline-block bg-gold px-3 py-1 fc3-label text-[0.5rem] text-ink">{loc.tag}</span>
+                <span className="inline-block bg-gold px-3 py-1 fc3-label text-[0.5625rem] text-ink">{loc.tag}</span>
                 <h3 className="mt-4 font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold uppercase leading-none tracking-[-0.03em]">
                   {loc.shortName}
                 </h3>
@@ -133,7 +133,7 @@ function Locations() {
                 <p className="mt-4 text-sm leading-relaxed text-paper/60">{loc.description}</p>
                 <dl className="mt-6 grid grid-cols-3 gap-4 border-t border-paper/10 pt-6">
                   <div>
-                    <dt className="fc3-label text-paper/40">GLA</dt>
+                    <dt className="fc3-label text-paper/55">GLA</dt>
                     <dd className="mt-1 font-display text-lg font-bold">{loc.gla}</dd>
                   </div>
                   <div>
@@ -156,7 +156,7 @@ function Locations() {
         <div className="fc3-shell grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <h2 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-              Interested in a space<span className="text-gold">?</span>
+              Interested in a space<span className="text-gold-deep">?</span>
             </h2>
             <p className="mt-5 max-w-md text-base text-ink/65 leading-relaxed">
               Our leasing team handles enquiries for all active and upcoming locations. Fixed rent and revenue-share structures available.

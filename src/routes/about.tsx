@@ -58,7 +58,7 @@ function About() {
       {/* Who We Are */}
       <section className="bg-paper py-24 text-ink md:py-36">
         <div className="fc3-shell">
-          <SectionLabel index="01">Who We Are</SectionLabel>
+          <SectionLabel>Who We Are</SectionLabel>
           <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-20">
             <h2 className="font-display text-[clamp(2rem,4.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-[-0.035em]">
               <span className="block overflow-hidden">
@@ -92,14 +92,18 @@ function About() {
       {/* What Makes C3 Different */}
       <section className="bg-ink py-24 text-paper md:py-32">
         <div className="fc3-shell">
-          <SectionLabel index="02">What Makes C3 Different</SectionLabel>
+          <SectionLabel tone="ink">What Makes C3 Different</SectionLabel>
           <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
             Why brands choose<br />C3<span className="text-gold">.</span>
           </h2>
-          <ul className="mt-16 grid gap-px border border-paper/10 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-16 divide-y divide-paper/10 border-y border-paper/10">
             {differentiators.map((d, i) => (
-              <li key={d.label} data-reveal data-reveal-delay={i * 60} className="flex flex-col gap-4 bg-ink p-8 md:p-10">
-                <span className="h-2 w-2 bg-gold" aria-hidden="true" />
+              <li
+                key={d.label}
+                data-reveal
+                data-reveal-delay={i * 60}
+                className="grid gap-4 py-8 md:grid-cols-[1fr_1.4fr] md:gap-16 md:items-baseline"
+              >
                 <h3 className="font-display text-xl font-bold uppercase tracking-[-0.02em] leading-tight">{d.label}</h3>
                 <p className="text-sm leading-relaxed text-paper/60">{d.desc}</p>
               </li>
@@ -117,7 +121,7 @@ function About() {
       <section className="bg-paper py-24 text-ink md:py-32">
         <div className="fc3-shell grid gap-16 lg:grid-cols-2 lg:items-start lg:gap-24">
           <div>
-            <SectionLabel index="03">Our Services</SectionLabel>
+            <SectionLabel>Our Services</SectionLabel>
             <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
               Everything your brand needs<span className="text-gold">.</span>
             </h2>
@@ -140,11 +144,10 @@ function About() {
       {/* Core Values */}
       <section className="bg-ink py-24 text-paper md:py-32">
         <div className="fc3-shell">
-          <SectionLabel index="04">Core Values</SectionLabel>
-          <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
+          <h2 className="font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
             What we stand for<span className="text-gold">.</span>
           </h2>
-          <ul className="mt-16 grid gap-8 md:grid-cols-2">
+          <ul className="mt-10 grid gap-8 md:grid-cols-2">
             {values.map((v, i) => (
               <li key={v.label} data-reveal data-reveal-delay={i * 80} className="border-t border-paper/15 pt-8">
                 <p className="fc3-label text-gold">{v.sub}</p>
@@ -162,7 +165,7 @@ function About() {
       <section className="bg-paper py-20 text-ink md:py-28">
         <div className="fc3-shell text-center">
           <h2 className="font-display text-[clamp(2rem,6vw,5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-            Ready to be part<br />of the network<span className="text-gold">?</span>
+            Ready to be part<br />of the network<span className="text-gold-deep">?</span>
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link to="/contact" className="inline-flex items-center gap-4 bg-ink px-8 py-4 fc3-label text-paper transition-colors hover:bg-gold hover:text-ink">

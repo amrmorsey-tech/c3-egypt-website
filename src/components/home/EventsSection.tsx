@@ -56,9 +56,9 @@ export function EventsSection() {
       <div className="fc3-shell">
         <div className="flex flex-wrap items-end justify-between gap-8">
           <div>
-            <SectionLabel index="05">Latest</SectionLabel>
+            <SectionLabel>Latest</SectionLabel>
             <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-              Always growing<span className="text-gold">.</span>
+              Always growing<span className="text-gold-deep">.</span>
             </h2>
           </div>
           <AnimatedButton to="/locations">View all locations</AnimatedButton>
@@ -84,7 +84,7 @@ export function EventsSection() {
                 <p className="font-display text-[3rem] font-bold text-paper leading-none">
                   {site.stats[0].value}
                 </p>
-                <p className="fc3-label text-paper/60 mt-1 text-[0.5rem]">ACTIVE LOCATIONS</p>
+                <p className="fc3-label text-paper/60 mt-1 text-[0.5625rem]">ACTIVE LOCATIONS</p>
               </div>
             </div>
             <h3 className="mt-6 font-display text-[clamp(1.75rem,3.2vw,2.75rem)] font-bold uppercase leading-none tracking-[-0.03em] transition-transform duration-500 group-hover:translate-x-1">
@@ -101,7 +101,7 @@ export function EventsSection() {
                   to="/locations"
                   className="group flex items-start gap-6 py-6"
                 >
-                  <span className="fc3-label w-20 shrink-0 pt-1 text-gold">{item.dateLabel}</span>
+                  <span className="fc3-label w-20 shrink-0 pt-1 text-gold-deep">{item.dateLabel}</span>
                   <span className="flex-1">
                     <span className="block font-display text-xl font-semibold uppercase tracking-[-0.02em] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2">
                       {item.title}

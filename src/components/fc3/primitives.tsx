@@ -1,20 +1,25 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
-/** Small editorial label with the gold square marker: "01 — DISCOVER". */
+/** Small editorial label with the gold square marker: "DISCOVER". */
 export function SectionLabel({
   index,
   children,
   className = "",
+  tone = "paper",
 }: {
   index?: string;
   children: ReactNode;
   className?: string;
+  /** "paper" = accessible dark-gold on white; "ink" = bright gold on dark */
+  tone?: "ink" | "paper";
 }) {
   return (
     <p className={`fc3-label flex items-center gap-3 ${className}`}>
       <span className="fc3-square h-2 w-2" aria-hidden="true" />
-      {index ? <span className="text-gold">{index}</span> : null}
+      {index ? (
+        <span className={tone === "ink" ? "text-gold" : "text-gold-deep"}>{index}</span>
+      ) : null}
       <span className="opacity-70">{children}</span>
     </p>
   );

@@ -38,7 +38,7 @@ export function EntertainmentSection() {
   return (
     <section className="bg-ink py-24 text-paper md:py-32">
       <div className="fc3-shell">
-        <SectionLabel index="04">Why C3</SectionLabel>
+        <SectionLabel tone="ink">Why C3</SectionLabel>
         <h2 className="mt-5 max-w-3xl font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
           Built for brands,
           <br />
@@ -72,7 +72,7 @@ export function EntertainmentSection() {
                   {item.title}
                 </h3>
                 <p className="mt-4 max-w-md text-sm leading-relaxed text-paper/65">{item.copy}</p>
-                <p className="fc3-label mt-6 text-paper/40">{item.detail}</p>
+                <p className="fc3-label mt-6 text-paper/55">{item.detail}</p>
                 <Link
                   to={item.to}
                   className="fc3-underline fc3-label mt-6 inline-flex items-center gap-3"

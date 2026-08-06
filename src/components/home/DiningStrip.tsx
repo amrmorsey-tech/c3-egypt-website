@@ -17,9 +17,9 @@ export function DiningStrip() {
     <section className="bg-paper py-24 text-ink md:py-32">
       <div className="fc3-shell flex flex-wrap items-end justify-between gap-8">
         <div>
-          <SectionLabel index="03">Locations</SectionLabel>
+          <SectionLabel>Locations</SectionLabel>
           <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-            Across Egypt<span className="text-gold">.</span>
+            Across Egypt<span className="text-gold-deep">.</span>
           </h2>
         </div>
         <AnimatedButton to="/locations">All locations</AnimatedButton>
@@ -52,7 +52,7 @@ export function DiningStrip() {
                   </span>
                   {/* GLA bottom info */}
                   <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-ink/80 to-transparent p-5">
-                    <p className="fc3-label text-paper/70 text-[0.5rem]">GLA {loc.gla}</p>
+                    <p className="fc3-label text-paper/70 text-[0.5625rem]">GLA {loc.gla}</p>
                     <p className="font-display text-lg font-bold text-paper uppercase tracking-[-0.02em] leading-none mt-1">
                       {loc.brands} brands
                     </p>
@@ -64,7 +64,7 @@ export function DiningStrip() {
                   </h3>
                   <span className="fc3-label shrink-0 text-ink/40">{loc.footfall}/day</span>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-ink/60">{loc.city}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink/70">{loc.city}</p>
               </Link>
             </li>
           ))}

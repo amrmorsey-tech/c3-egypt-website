@@ -69,7 +69,7 @@ function Contact() {
             },
           ].map((block) => (
             <div key={block.label} className="border-t-2 border-gold pt-8">
-              <p className="fc3-label text-gold">{block.label}</p>
+              <p className="fc3-label text-gold-deep">{block.label}</p>
               <ul className="mt-4 space-y-1">
                 {block.lines.map((line) => (
                   <li key={line} className="text-sm text-ink/70">{line}</li>
@@ -95,20 +95,19 @@ function Contact() {
       <section className="bg-paper py-24 text-ink md:py-32">
         <div className="fc3-shell grid gap-16 lg:grid-cols-[1.2fr_1fr] lg:items-start lg:gap-24">
           <div>
-            <SectionLabel index="01">Enquiry Form</SectionLabel>
-            <h2 className="mt-5 font-display text-[clamp(2rem,5vw,4rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-              Start the conversation<span className="text-gold">.</span>
+            <h2 className="font-display text-[clamp(2rem,5vw,4rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
+              Start the conversation<span className="text-gold-deep">.</span>
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-ink/65">
               Fill in the form and our team will get back to you within one business day. All enquiry types welcome — leasing, investment, brand partnerships and press.
             </p>
 
             <div className="mt-12 space-y-3">
-              <p className="fc3-label text-gold">Follow us</p>
+              <p className="fc3-label text-gold-deep">Follow us</p>
               <ul className="flex flex-wrap gap-x-6 gap-y-2">
                 {site.social.map((s) => (
                   <li key={s.label}>
-                    <a href={s.href} target="_blank" rel="noreferrer" className="fc3-label text-ink/60 hover:text-gold transition-colors uppercase tracking-[0.08em]">
+                    <a href={s.href} target="_blank" rel="noreferrer" className="fc3-label text-ink/70 hover:text-gold-deep transition-colors uppercase tracking-[0.08em]">
                       {s.label}
                     </a>
                   </li>
@@ -129,7 +128,7 @@ function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6 border-t border-ink/12 pt-12">
               <div className="grid gap-6 md:grid-cols-2">
                 <label className="flex flex-col gap-2">
-                  <span className="fc3-label text-ink/50">Full name *</span>
+                  <span className="fc3-label text-ink/70">Full name *</span>
                   <input
                     required
                     type="text"
@@ -140,7 +139,7 @@ function Contact() {
                   />
                 </label>
                 <label className="flex flex-col gap-2">
-                  <span className="fc3-label text-ink/50">Email address *</span>
+                  <span className="fc3-label text-ink/70">Email address *</span>
                   <input
                     required
                     type="email"
@@ -153,7 +152,7 @@ function Contact() {
               </div>
               <div className="grid gap-6 md:grid-cols-2">
                 <label className="flex flex-col gap-2">
-                  <span className="fc3-label text-ink/50">Phone number</span>
+                  <span className="fc3-label text-ink/70">Phone number</span>
                   <input
                     type="tel"
                     value={form.phone}
@@ -163,7 +162,7 @@ function Contact() {
                   />
                 </label>
                 <label className="flex flex-col gap-2">
-                  <span className="fc3-label text-ink/50">Enquiry type</span>
+                  <span className="fc3-label text-ink/70">Enquiry type</span>
                   <select
                     value={form.type}
                     onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))}
@@ -198,7 +197,7 @@ function Contact() {
               </label>
               <button
                 type="submit"
-                className="inline-flex items-center gap-4 bg-ink px-8 py-4 fc3-label text-paper hover:bg-gold hover:text-ink transition-colors"
+                className="group inline-flex items-center gap-4 bg-ink px-8 py-4 fc3-label text-paper hover:bg-gold hover:text-ink transition-colors"
               >
                 <span className="h-2 w-2 bg-paper transition-colors group-hover:bg-ink" aria-hidden="true" />
                 Send enquiry
@@ -211,7 +210,7 @@ function Contact() {
       {/* Locations map pins */}
       <section className="bg-ink py-16 text-paper md:py-24">
         <div className="fc3-shell">
-          <SectionLabel index="02">All Locations</SectionLabel>
+          <SectionLabel tone="ink">All Locations</SectionLabel>
           <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
             Find us<span className="text-gold">.</span>
           </h2>
@@ -219,13 +218,13 @@ function Contact() {
             {locations.map((loc, i) => (
               <li key={loc.id} data-reveal data-reveal-delay={i * 50}>
                 <a href={loc.mapUrl} target="_blank" rel="noreferrer" className="group block border-t border-paper/15 pt-5">
-                  <span className={`inline-block px-2 py-1 fc3-label text-[0.5rem] ${loc.tag === "Coming Soon" ? "bg-paper/10 text-paper/50" : "bg-gold text-ink"}`}>
+                  <span className={`inline-block px-2 py-1 fc3-label text-[0.5625rem] ${loc.tag === "Coming Soon" ? "bg-paper/10 text-paper/50" : "bg-gold text-ink"}`}>
                     {loc.tag}
                   </span>
                   <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-[-0.02em] transition-transform duration-500 group-hover:translate-x-1">
                     {loc.shortName}
                   </h3>
-                  <p className="mt-1 fc3-label text-paper/40">{loc.city}</p>
+                  <p className="mt-1 fc3-label text-paper/55">{loc.city}</p>
                   <p className="mt-3 fc3-label text-paper/50 flex items-center gap-1.5">
                     Open in maps <span aria-hidden="true">↗</span>
                   </p>

@@ -9,7 +9,7 @@ export function Intro() {
   return (
     <section className="relative bg-paper py-24 text-ink md:py-36">
       <div className="fc3-shell">
-        <SectionLabel index="01">Our Network</SectionLabel>
+        <SectionLabel>Our Network</SectionLabel>
 
         <div className="mt-10 grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
           <h2 className="font-display text-[clamp(2rem,4.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-[-0.035em]">
@@ -20,7 +20,7 @@ export function Intro() {
             </span>
             <span className="block overflow-hidden">
               <span data-reveal data-reveal-delay="90" className="block">
-                retail network<span className="text-gold">.</span>
+                retail network<span className="text-gold-deep">.</span>
               </span>
             </span>
           </h2>
@@ -62,7 +62,7 @@ export function Intro() {
         <dl className="mt-16 grid grid-cols-2 gap-y-10 border-t border-ink/10 pt-12 md:grid-cols-4">
           {site.stats.map((stat, i) => (
             <div key={stat.label} data-reveal data-reveal-delay={i * 80}>
-              <dt className="fc3-label text-ink/50">{stat.label}</dt>
+              <dt className="fc3-label text-ink/70">{stat.label}</dt>
               <dd className="mt-3 font-display text-[clamp(2.25rem,4.5vw,3.75rem)] font-bold leading-none tracking-[-0.04em]">
                 {stat.value}
               </dd>

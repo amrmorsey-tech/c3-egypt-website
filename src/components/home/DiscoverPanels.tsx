@@ -79,14 +79,14 @@ export function DiscoverPanels() {
       >
         <div className="fc3-shell flex items-end justify-between gap-8">
           <div>
-            <SectionLabel index="02">Ecosystem</SectionLabel>
+            <SectionLabel tone="ink">Ecosystem</SectionLabel>
             <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
               Built for every day<span className="text-gold">.</span>
             </h2>
           </div>
           {horizontal ? (
             <div className="hidden w-56 items-center gap-4 lg:flex">
-              <span className="fc3-label text-paper/40">
+              <span className="fc3-label text-paper/55">
                 {String(Math.min(panels.length, Math.floor(progress * panels.length) + 1)).padStart(2, "0")}
                 /0{panels.length}
               </span>
