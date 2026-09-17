@@ -213,26 +213,43 @@ function Home() {
             </Link>
           </div>
 
-          <ul className="mt-14 divide-y divide-ink/10 border-y border-ink/10">
+          <ul className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {newsItems.filter((n) => n.featured).slice(0, 3).map((item, i) => (
-              <li key={item.id} data-reveal data-reveal-delay={i * 60}>
+              <li key={item.id} data-reveal data-reveal-delay={i * 70}>
                 <a
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group grid gap-4 py-7 md:grid-cols-[7rem_1fr_6rem] md:items-center md:gap-8"
+                  className="group flex flex-col h-full"
                 >
-                  <span className="fc3-label inline-block border border-ink/20 px-3 py-1.5 text-ink/60 text-[0.5625rem] w-fit">
-                    {item.category}
-                  </span>
-                  <h3 className="font-display text-xl font-bold uppercase tracking-[-0.02em] leading-tight transition-transform duration-500 group-hover:translate-x-1">
-                    {item.headlineEn}
-                  </h3>
-                  <div className="flex items-center justify-between md:flex-col md:items-end gap-2">
-                    <span className="fc3-label text-ink/50 text-[0.5625rem]">{item.source}</span>
-                    <span className="fc3-label text-gold-deep opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5">
-                      Read <span aria-hidden="true">↗</span>
+                  <div className="relative aspect-[16/9] overflow-hidden bg-ink">
+                    <img
+                      src={item.image}
+                      alt={item.headlineEn}
+                      className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-ink/20" />
+                    <span className="absolute left-4 top-4 bg-gold px-3 py-1.5 fc3-label text-[0.5625rem] text-ink">
+                      {item.category}
                     </span>
+                  </div>
+                  <div className="flex flex-col flex-1 border border-t-0 border-ink/10 p-5">
+                    <p className="fc3-label text-ink/40 text-[0.5625rem] mb-3">{item.source}</p>
+                    <h3 className="font-display text-lg font-bold uppercase tracking-[-0.02em] leading-tight transition-transform duration-500 group-hover:translate-x-0.5 flex-1">
+                      {item.headlineEn}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink/60 line-clamp-3">
+                      {item.excerpt}
+                    </p>
+                    <div className="mt-5 flex items-center justify-between border-t border-ink/10 pt-4">
+                      <span className="fc3-label text-ink/35 text-[0.5625rem]">
+                        {new Date(item.date).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}
+                      </span>
+                      <span className="fc3-label text-gold-deep flex items-center gap-1 text-[0.5625rem] opacity-0 group-hover:opacity-100 transition-opacity">
+                        Read <span aria-hidden="true">↗</span>
+                      </span>
+                    </div>
                   </div>
                 </a>
               </li>
