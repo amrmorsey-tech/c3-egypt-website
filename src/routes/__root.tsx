@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 function Root() {
   useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const els = document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-mask]");
     if (!els.length) return;
 
     const observer = new IntersectionObserver(
@@ -18,7 +18,7 @@ function Root() {
             const el = entry.target as HTMLElement;
             const delay = el.dataset.revealDelay ?? "0";
             el.style.transitionDelay = `${delay}ms`;
-            el.classList.add("revealed");
+            el.classList.add("is-in");
             observer.unobserve(el);
           }
         }

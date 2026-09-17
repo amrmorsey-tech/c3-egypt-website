@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { locations } from "@/content/site";
 import { SectionLabel, AnimatedButton } from "@/components/fc3/primitives";
 import dining1 from "@/assets/dining-1.jpg";
-import dining2 from "@/assets/dining-2.jpg";
+import dining2 from "@/assets/dining-3.jpg";
 import dining3 from "@/assets/dining-3.jpg";
 import dining4 from "@/assets/dining-4.jpg";
 import visitAerial from "@/assets/visit-aerial.jpg";
