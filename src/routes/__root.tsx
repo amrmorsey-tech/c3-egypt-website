@@ -35,7 +35,7 @@ function Root() {
       <Preloader />
       <GoldCursor />
       <Navigation />
-      <main id="main">
+      <main id="main" className="pb-14 md:pb-0">
         <ScrollRestoration />
         <Outlet />
       </main>
