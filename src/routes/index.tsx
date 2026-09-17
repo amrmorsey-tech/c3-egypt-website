@@ -216,10 +216,8 @@ function Home() {
           <ul className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {newsItems.filter((n) => n.featured).slice(0, 3).map((item, i) => (
               <li key={item.id} data-reveal data-reveal-delay={i * 70}>
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/news"
                   className="group flex flex-col h-full"
                 >
                   <div className="relative aspect-[16/9] overflow-hidden bg-ink">
@@ -247,11 +245,11 @@ function Home() {
                         {new Date(item.date).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}
                       </span>
                       <span className="fc3-label text-gold-deep flex items-center gap-1 text-[0.5625rem] opacity-0 group-hover:opacity-100 transition-opacity">
-                        Read <span aria-hidden="true">↗</span>
+                        Read <span aria-hidden="true">→</span>
                       </span>
                     </div>
                   </div>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
