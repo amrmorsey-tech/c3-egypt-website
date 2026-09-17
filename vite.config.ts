@@ -1,5 +1,14 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 export default defineConfig({
-  nitro: false,
+  plugins: [
+    TanStackRouterVite({ autoCodeSplitting: false }),
+    react(),
+    tailwindcss(),
+    tsConfigPaths(),
+  ],
 });
