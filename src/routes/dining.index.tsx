@@ -3,7 +3,7 @@ import { PageHero } from "@/components/fc3/PageHero";
 import { restaurants } from "@/content/dining";
 import { Marquee } from "@/components/fc3/Marquee";
 import { AnimatedButton } from "@/components/fc3/primitives";
-import panelDine from "@/assets/panel-dine.jpg";
+import panelDine from "@/assets/dining-1.jpg";
 
 const title = "Dining at C3 Retail Network — 60 kitchens and cafés";
 const description =

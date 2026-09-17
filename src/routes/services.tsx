@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/fc3/PageHero";
 import { SectionLabel } from "@/components/fc3/primitives";
-import svcRetail from "@/assets/svc-retail.png";
-import svcMarketing from "@/assets/svc-marketing.png";
-import svcSecurity from "@/assets/svc-security.png";
-import svcEntertainment from "@/assets/svc-entertainment.png";
-import svcParking from "@/assets/svc-parking.png";
+import svcRetail from "@/assets/panel-shop.jpg";
+import svcMarketing from "@/assets/event-2.jpg";
+import svcSecurity from "@/assets/intro-architecture.jpg";
+import svcEntertainment from "@/assets/ent-cinema.jpg";
+import svcParking from "@/assets/visit-aerial.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
