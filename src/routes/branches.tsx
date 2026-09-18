@@ -71,14 +71,18 @@ function Branches() {
           <ul className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {active.map((loc, i) => {
               const locAny = loc as typeof loc & {
-                parking?: string;
+                totalArea?: string;
+                retail?: string;
+                fnb?: string;
+                fnbUnits?: number;
                 hypermarket?: string;
-                retailUnits?: number;
-                fbUnits?: number;
+                parking?: string;
+                address?: string;
+                landmarks?: readonly string[];
               };
               return (
                 <li key={loc.id} data-reveal data-reveal-delay={i * 70}>
-                  <a href={loc.mapUrl} target="_blank" rel="noreferrer" className="group block">
+                  <Link to="/branches/$id" params={{ id: loc.id }} className="group block">
                     <div className="relative aspect-[4/3] overflow-hidden bg-ink">
                       <img
                         src={locImages[loc.id]}
@@ -97,11 +101,10 @@ function Branches() {
                       <p className="mt-1 fc3-label text-ink/70">{loc.city}, {loc.governorate}</p>
                       <p className="mt-3 text-sm leading-relaxed text-ink/65">{loc.description}</p>
 
-                      {/* Fact sheet row */}
                       <dl className="mt-4 grid grid-cols-3 gap-3 border-t border-ink/10 pt-4">
                         <div>
-                          <dt className="fc3-label text-ink/45 text-[0.5rem] uppercase tracking-widest">GLA</dt>
-                          <dd className="mt-0.5 font-display text-sm font-bold leading-tight">{loc.gla}</dd>
+                          <dt className="fc3-label text-ink/45 text-[0.5rem] uppercase tracking-widest">Total Area</dt>
+                          <dd className="mt-0.5 font-display text-sm font-bold leading-tight">{locAny.totalArea ?? loc.gla}</dd>
                         </div>
                         <div>
                           <dt className="fc3-label text-ink/45 text-[0.5rem] uppercase tracking-widest">Brands</dt>
@@ -111,33 +114,33 @@ function Branches() {
                           <dt className="fc3-label text-ink/45 text-[0.5rem] uppercase tracking-widest">Daily visits</dt>
                           <dd className="mt-0.5 font-display text-sm font-bold leading-tight">{loc.footfall}</dd>
                         </div>
-                        {locAny.parking && (
+                        {locAny.parking && locAny.parking !== "—" && (
                           <div>
                             <dt className="fc3-label text-ink/45 text-[0.5rem] uppercase tracking-widest">Parking</dt>
                             <dd className="mt-0.5 font-display text-sm font-bold leading-tight">{locAny.parking}</dd>
                           </div>
                         )}
-                        {locAny.retailUnits && (
-                          <div>
-                            <dt className="fc3-label text-ink/45 text-[0.5rem] uppercase tracking-widest">Retail units</dt>
-                            <dd className="mt-0.5 font-display text-sm font-bold leading-tight">{locAny.retailUnits}</dd>
-                          </div>
-                        )}
-                        {locAny.fbUnits && (
+                        {locAny.fnbUnits && locAny.fnbUnits > 0 && (
                           <div>
                             <dt className="fc3-label text-ink/45 text-[0.5rem] uppercase tracking-widest">F&B units</dt>
-                            <dd className="mt-0.5 font-display text-sm font-bold leading-tight">{locAny.fbUnits}</dd>
+                            <dd className="mt-0.5 font-display text-sm font-bold leading-tight">{locAny.fnbUnits}</dd>
+                          </div>
+                        )}
+                        {locAny.hypermarket && locAny.hypermarket !== "—" && (
+                          <div>
+                            <dt className="fc3-label text-ink/45 text-[0.5rem] uppercase tracking-widest">Hypermarket</dt>
+                            <dd className="mt-0.5 font-display text-sm font-bold leading-tight">{locAny.hypermarket}</dd>
                           </div>
                         )}
                       </dl>
 
                       <div className="mt-4 flex items-center justify-end">
-                        <span className="fc3-label text-ink/40 flex items-center gap-1">
-                          Open in maps <span aria-hidden="true">↗</span>
+                        <span className="fc3-label text-gold-deep flex items-center gap-1 text-[0.5625rem] opacity-0 group-hover:opacity-100 transition-opacity">
+                          View details <span aria-hidden="true">→</span>
                         </span>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </li>
               );
             })}
