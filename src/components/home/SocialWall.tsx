@@ -34,8 +34,13 @@ export function SocialWall() {
                   className="h-full w-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                 />
               </div>
-              <span className="fc3-label absolute bottom-3 left-3 text-[0.5625rem] text-paper/80">
-                {item.handle}
+              <span className="absolute bottom-3 left-3 flex items-center justify-center rounded-sm bg-ink/50 p-1.5 backdrop-blur-sm" aria-label={item.handle}>
+                {/* Instagram icon */}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-paper" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                </svg>
               </span>
             </li>
           ))}
