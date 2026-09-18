@@ -8,7 +8,10 @@ import { useEffect } from "react";
 
 function Root() {
   useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-mask]");
+    // Query only elements not yet revealed — runs on every render so SPA navigation is covered
+    const els = document.querySelectorAll<HTMLElement>(
+      "[data-reveal]:not(.is-in), [data-reveal-mask]:not(.is-in)"
+    );
     if (!els.length) return;
 
     const observer = new IntersectionObserver(
@@ -16,19 +19,18 @@ function Root() {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             const el = entry.target as HTMLElement;
-            const delay = el.dataset.revealDelay ?? "0";
-            el.style.transitionDelay = `${delay}ms`;
+            el.style.transitionDelay = `${el.dataset.revealDelay ?? "0"}ms`;
             el.classList.add("is-in");
             observer.unobserve(el);
           }
         }
       },
-      { threshold: 0, rootMargin: "0px 0px 80px 0px" }
+      { threshold: 0, rootMargin: "0px 0px 120px 0px" }
     );
 
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }); // no deps — re-runs after every render / navigation
 
   return (
     <>

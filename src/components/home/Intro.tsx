@@ -13,15 +13,11 @@ export function Intro() {
 
         <div className="mt-10 grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
           <h2 className="font-display text-[clamp(2rem,4.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-[-0.035em]">
-            <span className="block overflow-hidden">
-              <span data-reveal className="block">
-                Egypt's community
-              </span>
+            <span data-reveal className="block">
+              Egypt's community
             </span>
-            <span className="block overflow-hidden">
-              <span data-reveal data-reveal-delay="90" className="block">
-                retail network<span className="text-gold-deep">.</span>
-              </span>
+            <span data-reveal data-reveal-delay="90" className="block">
+              retail network<span className="text-gold-deep">.</span>
             </span>
           </h2>
 

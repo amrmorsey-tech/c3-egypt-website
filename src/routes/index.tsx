@@ -77,8 +77,6 @@ function Home() {
             {timeline.map((phase, i) => (
               <li
                 key={phase.year}
-                data-reveal
-                data-reveal-delay={i * 80}
                 className="relative flex-shrink-0 w-72 md:w-auto border-t-2 border-paper/20 pt-8 pr-8 md:pr-6 lg:pr-8"
               >
                 <span className="absolute -top-[5px] left-0 h-2 w-2 bg-gold" aria-hidden="true" />
