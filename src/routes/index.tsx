@@ -85,19 +85,45 @@ const tenantBrands = [
 
 function BrandsSection() {
   return (
-    <section className="bg-ink py-20 text-paper md:py-28">
+    <section className="bg-paper py-20 text-ink md:py-28">
       <div className="fc3-shell">
-        {/* Anchor partners */}
-        <div className="border-b border-paper/10 pb-14">
-          <p data-reveal className="fc3-label text-center text-paper/40 mb-10">Strategic partners</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-16">
+
+        {/* Strategic partners — dark pill cards so white logos stay visible */}
+        <div className="border-b border-ink/10 pb-16">
+          <p data-reveal className="fc3-label text-center text-ink/40 mb-12">Strategic partners</p>
+          <div className="flex flex-wrap items-center justify-center gap-5 md:gap-8">
             {anchorBrands.map((b) => (
-              <div key={b.alt} className="flex items-center justify-center">
+              <div
+                key={b.alt}
+                className="flex h-20 w-44 items-center justify-center rounded bg-ink px-5 py-4 opacity-80 hover:opacity-100 transition-opacity duration-300"
+              >
                 <img
                   src={b.src}
                   alt={b.alt}
-                  className="h-10 w-auto max-w-[140px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
-                  style={{ filter: "brightness(0) invert(1)" }}
+                  className="h-full w-full object-contain"
+                  loading="eager"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tenant brands — light bg, mix-blend-mode removes white halos */}
+        <div className="pt-16">
+          <p data-reveal className="fc3-label text-center text-ink/40 mb-12">Our brands</p>
+          <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+            {tenantBrands.map((b, i) => (
+              <div
+                key={b.alt}
+                data-reveal
+                data-reveal-delay={i * 40}
+                className="flex h-24 items-center justify-center rounded border border-ink/8 bg-ink/[0.03] p-4 opacity-75 hover:opacity-100 transition-opacity duration-300"
+              >
+                <img
+                  src={b.src}
+                  alt={b.alt}
+                  className="h-full w-full object-contain"
+                  style={{ mixBlendMode: "multiply" }}
                   loading="lazy"
                 />
               </div>
@@ -105,28 +131,6 @@ function BrandsSection() {
           </div>
         </div>
 
-        {/* Tenant brands grid */}
-        <div className="pt-14">
-          <p data-reveal className="fc3-label text-center text-paper/40 mb-10">Our brands</p>
-          <div className="grid grid-cols-4 gap-x-6 gap-y-8 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-8">
-            {tenantBrands.map((b, i) => (
-              <div
-                key={b.alt}
-                data-reveal
-                data-reveal-delay={i * 40}
-                className="flex items-center justify-center"
-              >
-                <img
-                  src={b.src}
-                  alt={b.alt}
-                  className="h-14 w-full object-contain opacity-55 hover:opacity-100 transition-opacity duration-300"
-                  style={{ filter: "brightness(0) invert(1)" }}
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
