@@ -211,9 +211,12 @@
   background-size: 5rem 5rem;
 }
 
-/* Scroll-reveal primitives driven by JS (data-reveal) */
+/* Scroll-reveal primitives driven by JS (data-reveal)
+   Elements are visible by default. The .js-reveal class on <body> (added by JS)
+   opts them into the hidden-then-revealed animation, so content is never blank
+   if the observer fails to fire. */
 @layer base {
-  [data-reveal] {
+  .js-reveal [data-reveal] {
     opacity: 0;
     transform: translateY(1rem);
     transition:
@@ -222,17 +225,17 @@
   }
 
   [data-reveal].is-in {
-    opacity: 1;
-    transform: none;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
-  [data-reveal-mask] {
+  .js-reveal [data-reveal-mask] {
     clip-path: inset(0 0 100% 0);
     transition: clip-path 1.2s var(--ease-fc3);
   }
 
   [data-reveal-mask].is-in {
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0) !important;
   }
 
   @media (prefers-reduced-motion: reduce) {

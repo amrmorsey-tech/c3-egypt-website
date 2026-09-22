@@ -15,6 +15,9 @@ export function usePrefersReducedMotion() {
 /** Adds `is-in` to every [data-reveal] / [data-reveal-mask] element as it enters view. */
 export function useScrollReveal() {
   useEffect(() => {
+    // Mark body so CSS hides elements only when JS is running
+    document.body.classList.add("js-reveal");
+
     const targets = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in), [data-reveal-mask]:not(.is-in)"),
     );
