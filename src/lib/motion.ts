@@ -12,60 +12,58 @@ export function usePrefersReducedMotion() {
   return reduced;
 }
 
-/** Adds `is-in` to every [data-reveal] / [data-reveal-mask] element as it enters view. */
-export function useScrollReveal() {
+/** Adds `is-in` to every [data-reveal] / [data-reveal-mask] element as it enters view.
+ *  Pass `pathname` (from useRouterState) as a dep so this re-runs on every navigation. */
+export function useScrollReveal(pathname?: string) {
   useEffect(() => {
     // Mark body so CSS hides elements only when JS is running
     document.body.classList.add("js-reveal");
 
-    const targets = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in), [data-reveal-mask]:not(.is-in)"),
-    );
-    if (!targets.length) return;
+    // Small delay so the new route's DOM is fully painted before we observe
+    const setup = window.setTimeout(() => {
+      const targets = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in), [data-reveal-mask]:not(.is-in)"),
+      );
+      if (!targets.length) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      targets.forEach((el) => el.classList.add("is-in"));
-      return;
-    }
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        targets.forEach((el) => el.classList.add("is-in"));
+        return;
+      }
 
-    // Chrome factors clip-path and overflow-hidden into IO intersection calculations,
-    // so elements that start fully clipped (translateY inside overflow-hidden, or
-    // clip-path:inset(0 0 100%)) report 0% intersection and the threshold never fires.
-    // Fix: observe the unclipped parent instead, and animate the actual target when
-    // the parent enters view.
-    const observeMap = new Map<Element, HTMLElement[]>();
-    targets.forEach((el) => {
-      const parent = el.parentElement;
-      const style = parent ? window.getComputedStyle(parent) : null;
-      const parentClips =
-        style && (style.overflow === "hidden" || style.overflowY === "hidden");
-      const isMask = el.hasAttribute("data-reveal-mask");
-      // Use parent as proxy for: (1) [data-reveal] clipped by overflow-hidden parent,
-      // (2) [data-reveal-mask] whose own clip-path fools Chrome's IO.
-      const useParent = (parentClips || isMask) && parent != null;
-      const proxy = useParent ? parent! : el;
-      if (!observeMap.has(proxy)) observeMap.set(proxy, []);
-      observeMap.get(proxy)!.push(el);
-    });
+      const observeMap = new Map<Element, HTMLElement[]>();
+      targets.forEach((el) => {
+        const parent = el.parentElement;
+        const style = parent ? window.getComputedStyle(parent) : null;
+        const parentClips =
+          style && (style.overflow === "hidden" || style.overflowY === "hidden");
+        const isMask = el.hasAttribute("data-reveal-mask");
+        const useParent = (parentClips || isMask) && parent != null;
+        const proxy = useParent ? parent! : el;
+        if (!observeMap.has(proxy)) observeMap.set(proxy, []);
+        observeMap.get(proxy)!.push(el);
+      });
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const revealTargets = observeMap.get(entry.target) ?? [];
-          revealTargets.forEach((t) => {
-            const delay = Number(t.dataset["revealDelay"] ?? 0);
-            window.setTimeout(() => t.classList.add("is-in"), delay);
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const revealTargets = observeMap.get(entry.target) ?? [];
+            revealTargets.forEach((t) => {
+              const delay = Number(t.dataset["revealDelay"] ?? 0);
+              window.setTimeout(() => t.classList.add("is-in"), delay);
+            });
+            io.unobserve(entry.target);
           });
-          io.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
-    );
+        },
+        { rootMargin: "0px 0px 80px 0px", threshold: 0 },
+      );
 
-    observeMap.forEach((_, proxy) => io.observe(proxy));
-    return () => io.disconnect();
-  }); // no deps — re-runs after every render so SPA navigation is covered
+      observeMap.forEach((_, proxy) => io.observe(proxy));
+    }, 50);
+
+    return () => window.clearTimeout(setup);
+  }, [pathname]); // re-runs whenever pathname changes (every navigation)
 }
 
 /** Lenis smooth scrolling, disabled entirely under reduced-motion. */
