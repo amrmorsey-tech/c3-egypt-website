@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 import { Hero } from "@/components/home/Hero";
 import { Marquee } from "@/components/fc3/Marquee";
@@ -10,6 +10,10 @@ import locObour from "@/assets/loc-obour.jpg";
 import locOctober from "@/assets/loc-october.jpg";
 import locNasrCity from "@/assets/loc-nasr-city.jpg";
 import locNewCapital from "@/assets/loc-new-capital.jpg";
+import locMay from "@/assets/loc-15-may.jpg";
+import locBadr from "@/assets/loc-badr.jpg";
+import locShorouk from "@/assets/loc-shorouk.jpg";
+import locRamadan from "@/assets/loc-10-ramadan.jpg";
 import svcRetail from "@/assets/panel-shop.jpg";
 import svcMarketing from "@/assets/event-2.jpg";
 import svcSecurity from "@/assets/intro-architecture.jpg";
@@ -32,11 +36,15 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const featuredBranches = [
-  { id: "new-capital", img: locNewCapital, shortName: "New Capital", tag: "Flagship", gla: "28,000 m²", brands: "40+", city: "New Administrative Capital" },
-  { id: "obour",       img: locObour,      shortName: "El Obour",    tag: "Established", gla: "22,000 m²", brands: "35+", city: "El Obour City" },
-  { id: "october",     img: locOctober,    shortName: "6th of October", tag: "Growing", gla: "25,000 m²", brands: "38+", city: "6th of October City" },
-  { id: "nasr-city",   img: locNasrCity,   shortName: "Nasr City",   tag: "Community", gla: "18,000 m²", brands: "30+", city: "Nasr City, Cairo" },
+const allBranches = [
+  { id: "new-capital",  img: locNewCapital, shortName: "New Capital",     tag: "Flagship",   gla: "12,853 m²", brands: "40+", city: "New Administrative Capital" },
+  { id: "obour",        img: locObour,      shortName: "El Obour",        tag: "Established",gla: "11,566 m²", brands: "35+", city: "El Obour City" },
+  { id: "october",      img: locOctober,    shortName: "6th of October",  tag: "Growing",    gla: "10,982 m²", brands: "38+", city: "6th of October City" },
+  { id: "nasr-city",    img: locNasrCity,   shortName: "Nasr City",       tag: "Community",  gla: "13,841 m²", brands: "30+", city: "Nasr City, Cairo" },
+  { id: "15-may",       img: locMay,        shortName: "15th of May",     tag: "Community",  gla: "10,098 m²", brands: "28+", city: "15th of May City" },
+  { id: "badr",         img: locBadr,       shortName: "Badr City",       tag: "Expanding",  gla: "10,055 m²", brands: "32+", city: "Badr City" },
+  { id: "shorouk",      img: locShorouk,    shortName: "El Shorouk",      tag: "Active",     gla: "11,519 m²", brands: "30+", city: "El Shorouk City" },
+  { id: "10-ramadan",   img: locRamadan,    shortName: "10th of Ramadan", tag: "Active",     gla: "11,800 m²", brands: "32+", city: "10th of Ramadan City" },
 ];
 
 const homeServices = [
@@ -49,6 +57,156 @@ const homeServices = [
 
 
 const partnerNames = ["Majid Al Futtaim", "Carrefour", "LC Waikiki", "Supeco", "Elena", "Grand Market", "Not!", "PastaCup"];
+
+function BranchesCarousel() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollStart = useRef(0);
+
+  const cardW = useCallback(() => {
+    const el = trackRef.current?.children[0] as HTMLElement | undefined;
+    return el ? el.offsetWidth + 24 : 320; // card width + gap
+  }, []);
+
+  const scrollTo = useCallback((idx: number) => {
+    const clamped = Math.max(0, Math.min(idx, allBranches.length - 1));
+    setActive(clamped);
+    trackRef.current?.scrollTo({ left: clamped * cardW(), behavior: "smooth" });
+  }, [cardW]);
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    isDragging.current = true;
+    startX.current = e.clientX;
+    scrollStart.current = trackRef.current?.scrollLeft ?? 0;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!isDragging.current) return;
+    const dx = startX.current - e.clientX;
+    if (trackRef.current) trackRef.current.scrollLeft = scrollStart.current + dx;
+  };
+
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    const dx = startX.current - e.clientX;
+    if (Math.abs(dx) > 40) {
+      scrollTo(active + (dx > 0 ? 1 : -1));
+    } else {
+      scrollTo(active);
+    }
+  };
+
+  const onScroll = () => {
+    if (isDragging.current) return;
+    const sl = trackRef.current?.scrollLeft ?? 0;
+    setActive(Math.round(sl / cardW()));
+  };
+
+  return (
+    <section className="bg-ink py-24 text-paper md:py-32">
+      <div className="fc3-shell">
+        <SectionLabel tone="ink">Our Branches</SectionLabel>
+        <div className="mt-5 flex flex-wrap items-end justify-between gap-6">
+          <h2 data-reveal className="font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
+            8 locations,<br />one network<span className="text-gold">.</span>
+          </h2>
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => scrollTo(active - 1)}
+                disabled={active === 0}
+                aria-label="Previous"
+                className="flex h-10 w-10 items-center justify-center border border-paper/20 text-paper/60 hover:border-paper hover:text-paper transition-colors disabled:opacity-25"
+              >
+                ←
+              </button>
+              <button
+                onClick={() => scrollTo(active + 1)}
+                disabled={active === allBranches.length - 1}
+                aria-label="Next"
+                className="flex h-10 w-10 items-center justify-center border border-paper/20 text-paper/60 hover:border-paper hover:text-paper transition-colors disabled:opacity-25"
+              >
+                →
+              </button>
+            </div>
+            <Link
+              to="/branches"
+              className="fc3-label flex items-center gap-2 text-paper/50 hover:text-paper transition-colors"
+            >
+              All branches <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Track — full bleed, scrolls outside shell */}
+      <div
+        ref={trackRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onScroll={onScroll}
+        className="mt-10 flex gap-6 overflow-x-auto scroll-smooth scrollbar-none cursor-grab active:cursor-grabbing select-none pl-[max(1.5rem,calc((100vw-1280px)/2+1.5rem))] pr-8"
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
+        {allBranches.map((loc, i) => (
+          <Link
+            key={loc.id}
+            to="/branches"
+            draggable={false}
+            className="group flex-shrink-0 w-[clamp(260px,38vw,360px)]"
+          >
+            <div className="relative aspect-[3/4] overflow-hidden">
+              <img
+                src={loc.img}
+                alt={loc.shortName}
+                className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+                loading={i < 3 ? "eager" : "lazy"}
+                draggable={false}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
+              <span className="absolute left-4 top-4 bg-gold px-3 py-1.5 fc3-label text-[0.5625rem] text-ink">
+                {loc.tag}
+              </span>
+              <div className="absolute bottom-0 inset-x-0 p-5">
+                <p className="fc3-label text-paper/60 text-[0.5625rem]">{loc.city}</p>
+                <h3 className="mt-1 font-display text-xl font-bold uppercase tracking-[-0.02em] leading-tight transition-transform duration-500 group-hover:translate-x-1">
+                  {loc.shortName}
+                </h3>
+                <div className="mt-3 flex items-center gap-4 fc3-label text-[0.5625rem] text-paper/60">
+                  <span>GLA {loc.gla}</span>
+                  <span>{loc.brands} brands</span>
+                </div>
+              </div>
+            </div>
+          </Link>
+        ))}
+        {/* right padding spacer */}
+        <div className="flex-shrink-0 w-8" aria-hidden="true" />
+      </div>
+
+      {/* Dot indicators */}
+      <div className="fc3-shell mt-8 flex items-center gap-2">
+        {allBranches.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollTo(i)}
+            aria-label={`Go to ${allBranches[i].shortName}`}
+            className={`h-1.5 transition-all duration-300 ${i === active ? "w-6 bg-gold" : "w-1.5 bg-paper/25 hover:bg-paper/50"}`}
+          />
+        ))}
+        <span className="ml-auto fc3-label text-paper/40 text-[0.5625rem]">
+          {active + 1} / {allBranches.length}
+        </span>
+      </div>
+    </section>
+  );
+}
 
 function Home() {
   const [submitted, setSubmitted] = useState(false);
@@ -137,52 +295,8 @@ function Home() {
         </div>
       </section>
 
-      {/* 5 — Selected branches */}
-      <section className="bg-ink py-24 text-paper md:py-32">
-        <div className="fc3-shell">
-          <SectionLabel tone="ink">Our Branches</SectionLabel>
-          <div className="mt-5 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="font-display text-[clamp(2rem,5.5vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.04em]">
-              8 locations,<br />one network<span className="text-gold">.</span>
-            </h2>
-            <Link
-              to="/branches"
-              className="fc3-label flex items-center gap-2 text-paper/50 hover:text-paper transition-colors"
-            >
-              All branches <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-
-          <ul className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {featuredBranches.map((loc, i) => (
-              <li key={loc.id} data-reveal data-reveal-delay={i * 80}>
-                <Link to="/branches" className="group block">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <img
-                      src={loc.img}
-                      alt={loc.shortName}
-                      className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
-                    <span className="absolute left-4 top-4 bg-gold px-3 py-1.5 fc3-label text-[0.5625rem] text-ink">{loc.tag}</span>
-                    <div className="absolute bottom-0 inset-x-0 p-5">
-                      <p className="fc3-label text-paper/60 text-[0.5625rem]">{loc.city}</p>
-                      <h3 className="mt-1 font-display text-xl font-bold uppercase tracking-[-0.02em] leading-tight transition-transform duration-500 group-hover:translate-x-1">
-                        {loc.shortName}
-                      </h3>
-                      <div className="mt-3 flex items-center gap-4 fc3-label text-[0.5625rem] text-paper/60">
-                        <span>GLA {loc.gla}</span>
-                        <span>{loc.brands} brands</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {/* 5 — All 8 branches carousel */}
+      <BranchesCarousel />
 
       {/* 6 — Partners bar */}
       <div className="bg-paper border-y border-ink/8">
