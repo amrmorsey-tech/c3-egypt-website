@@ -46,10 +46,8 @@ export function DisplayHeading({
   return (
     <Tag className={`${sizeClass} ${className}`}>
       {lines.map((line, i) => (
-        <span key={line + i} className="block overflow-hidden">
-          <span data-reveal data-reveal-delay={i * 90} className="block">
-            {line}
-          </span>
+        <span key={line + i} data-reveal data-reveal-delay={i * 90} className="block">
+          {line}
         </span>
       ))}
     </Tag>

@@ -84,8 +84,8 @@ function Investors() {
           <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-24 lg:items-start">
             <div>
               <h2 className="font-display text-[clamp(2rem,4.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-[-0.035em]">
-                <span className="block overflow-hidden"><span data-reveal className="block">Community retail</span></span>
-                <span className="block overflow-hidden"><span data-reveal data-reveal-delay="90" className="block">at national scale<span className="text-gold-deep">.</span></span></span>
+                <span data-reveal className="block">Community retail</span>
+                <span data-reveal data-reveal-delay="90" className="block">at national scale<span className="text-gold-deep">.</span></span>
               </h2>
               <div data-reveal data-reveal-delay="180" className="mt-8 space-y-5 text-base leading-relaxed text-ink/70">
                 <p>Egypt's retail market is growing — but growth is concentrated in Cairo's premium city-centre destinations that are already expensive and well-served.</p>

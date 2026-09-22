@@ -16,7 +16,7 @@ export function usePrefersReducedMotion() {
 export function useScrollReveal() {
   useEffect(() => {
     const targets = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-mask]"),
+      document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in), [data-reveal-mask]:not(.is-in)"),
     );
     if (!targets.length) return;
 
@@ -62,7 +62,7 @@ export function useScrollReveal() {
 
     observeMap.forEach((_, proxy) => io.observe(proxy));
     return () => io.disconnect();
-  }, []);
+  }); // no deps — re-runs after every render so SPA navigation is covered
 }
 
 /** Lenis smooth scrolling, disabled entirely under reduced-motion. */

@@ -63,10 +63,8 @@ export function PageHero({
 
         <h1 className="mt-6 font-display text-[clamp(2.5rem,9vw,8rem)] font-bold uppercase leading-[0.85] tracking-[-0.045em]">
           {headline.map((line, i) => (
-            <span key={line + i} className="block overflow-hidden">
-              <span data-reveal data-reveal-delay={i * 100} className="block">
-                {line}
-              </span>
+            <span key={line + i} data-reveal data-reveal-delay={i * 100} className="block">
+              {line}
             </span>
           ))}
         </h1>

@@ -40,12 +40,8 @@ function Brands() {
           <SectionLabel>What's Inside</SectionLabel>
           <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-20">
             <h2 className="font-display text-[clamp(2rem,4.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-[-0.035em]">
-              <span className="block overflow-hidden">
-                <span data-reveal className="block">Every category,</span>
-              </span>
-              <span className="block overflow-hidden">
-                <span data-reveal data-reveal-delay="90" className="block">every location<span className="text-gold">.</span></span>
-              </span>
+              <span data-reveal className="block">Every category,</span>
+              <span data-reveal data-reveal-delay="90" className="block">every location<span className="text-gold">.</span></span>
             </h2>
             <div data-reveal data-reveal-delay="180" className="space-y-5 text-base leading-relaxed text-ink/70">
               <p>C3 Retail Network is built around a complete ecosystem — every location offers the full mix of retail, F&B, entertainment and services that a modern Egyptian community needs.</p>
