@@ -91,11 +91,11 @@ function BrandsSection() {
         {/* Strategic partners — dark pill cards so white logos stay visible */}
         <div className="border-b border-ink/10 pb-16">
           <p data-reveal className="fc3-label text-center text-ink/40 mb-12">Strategic partners</p>
-          <div className="flex flex-wrap items-center justify-center gap-5 md:gap-8">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 md:gap-5">
             {anchorBrands.map((b) => (
               <div
                 key={b.alt}
-                className="flex h-20 w-44 items-center justify-center rounded bg-ink px-5 py-4 opacity-80 hover:opacity-100 transition-opacity duration-300"
+                className="flex h-20 items-center justify-center rounded bg-ink px-5 py-4 opacity-80 hover:opacity-100 transition-opacity duration-300"
               >
                 <img
                   src={b.src}
