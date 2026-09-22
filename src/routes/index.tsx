@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 import { Hero } from "@/components/home/Hero";
-import { Marquee } from "@/components/fc3/Marquee";
 import { SectionLabel } from "@/components/fc3/primitives";
 import { site, timeline, locations } from "@/content/site";
 import { newsItems } from "@/content/news";
@@ -56,7 +55,82 @@ const homeServices = [
 ];
 
 
-const partnerNames = ["Majid Al Futtaim", "Carrefour", "LC Waikiki", "Supeco", "Elena", "Grand Market", "Not!", "PastaCup"];
+// Main anchors shown larger at top of brands section
+const anchorBrands = [
+  { src: "/brands/majid.png",       alt: "Majid Al Futtaim" },
+  { src: "/brands/lc-waikiki.png",  alt: "LC Waikiki" },
+  { src: "/brands/supeco.png",      alt: "Supeco" },
+  { src: "/brands/carrefour.png",   alt: "Carrefour" },
+  { src: "/brands/grand-market.png",alt: "Grand Market" },
+];
+
+const tenantBrands = [
+  { src: "/brands/elena.png",       alt: "Elena Cakes & Sweets" },
+  { src: "/brands/koya.png",        alt: "Koya" },
+  { src: "/brands/athena.png",      alt: "Athena" },
+  { src: "/brands/nfrt.png",        alt: "NFRT" },
+  { src: "/brands/on-off.png",      alt: "On Off" },
+  { src: "/brands/rockets.png",     alt: "Rockets" },
+  { src: "/brands/coffee-maker.png",alt: "Coffee Maker" },
+  { src: "/brands/kasa-burger.png", alt: "Kasa Burger" },
+  { src: "/brands/drpt.png",        alt: "DRPT." },
+  { src: "/brands/full-cup.png",    alt: "Full Cup" },
+  { src: "/brands/gosips.png",      alt: "Go & Sips" },
+  { src: "/brands/ai-cha.png",      alt: "Ai-Cha" },
+  { src: "/brands/npd.png",         alt: "New Pizza Dept" },
+  { src: "/brands/amr-effendi.png", alt: "Amr Effendi" },
+  { src: "/brands/daj.png",         alt: "DAJ" },
+  { src: "/brands/360-cafe.png",    alt: "360 Café" },
+];
+
+function BrandsSection() {
+  return (
+    <section className="bg-ink py-20 text-paper md:py-28">
+      <div className="fc3-shell">
+        {/* Anchor partners */}
+        <div className="border-b border-paper/10 pb-14">
+          <p data-reveal className="fc3-label text-center text-paper/40 mb-10">Strategic partners</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-16">
+            {anchorBrands.map((b) => (
+              <div key={b.alt} className="flex items-center justify-center">
+                <img
+                  src={b.src}
+                  alt={b.alt}
+                  className="h-10 w-auto max-w-[140px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+                  style={{ filter: "brightness(0) invert(1)" }}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tenant brands grid */}
+        <div className="pt-14">
+          <p data-reveal className="fc3-label text-center text-paper/40 mb-10">Our brands</p>
+          <div className="grid grid-cols-4 gap-x-6 gap-y-8 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-8">
+            {tenantBrands.map((b, i) => (
+              <div
+                key={b.alt}
+                data-reveal
+                data-reveal-delay={i * 40}
+                className="flex items-center justify-center"
+              >
+                <img
+                  src={b.src}
+                  alt={b.alt}
+                  className="h-14 w-full object-contain opacity-55 hover:opacity-100 transition-opacity duration-300"
+                  style={{ filter: "brightness(0) invert(1)" }}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function BranchesCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -298,16 +372,8 @@ function Home() {
       {/* 5 — All 8 branches carousel */}
       <BranchesCarousel />
 
-      {/* 6 — Partners bar */}
-      <div className="bg-paper border-y border-ink/8">
-        <div className="fc3-shell py-6">
-          <p className="fc3-label text-ink/40 text-center mb-4">Strategic partners</p>
-        </div>
-        <Marquee
-          className="bg-paper text-ink border-t border-ink/8"
-          items={partnerNames}
-        />
-      </div>
+      {/* 6 — Brands & Partners */}
+      <BrandsSection />
 
       {/* 7 — News */}
       <section className="bg-paper py-24 text-ink md:py-32">
